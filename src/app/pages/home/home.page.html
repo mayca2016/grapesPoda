@@ -1,0 +1,58 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button (click)="menu()">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+    <ion-title>
+     APP MOYCA GRAPES
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="welcome-card">
+      <img src="/assets/imagenes/fondo.jpg" alt="" />
+      <ion-card-header>
+        
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+              <p>Bienvenido {{nombre}}</p>
+          </ion-col>
+          <ion-col style="text-align: right">
+            <p>{{fecha}}</p>
+          </ion-col>
+        </ion-row>
+       
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="enviado!=0" (click)="descarga()">
+      <ion-card-content style="text-align: center; background: red;" >
+        <h2 style="color:white">DESCARGAS PENDIENTES</h2>
+
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card style="background: green; text-align:center;" (click)="conteo('poda')">
+              <ion-card-content>
+                <h1 style="color: whitesmoke;">PODA</h1>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+              <ion-card style="background: #09a6ef; text-align:center;" (click)="historial('hpoda')">
+                <ion-card-content>
+                  <h1 style="color: whitesmoke;">HISTORIAL</h1>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+   
+</ion-content>

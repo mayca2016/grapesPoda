@@ -1,0 +1,86 @@
+<ion-header >
+    <ion-toolbar color="primary">
+    <ion-title>
+     SELECCIÓN POR PLANTA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+<ion-content>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="contact" slot="start"></ion-icon>
+          <ion-label>PRODUCTORES</ion-label>
+        </ion-item>
+      
+        <ion-card-content>
+         <mat-form-field style="width: 100%;">
+          <mat-select [formControl]="prodCtrl" placeholder="Productor" #singleSelect (blur)="selectParcelas()">
+              <mat-option>
+                <ngx-mat-select-search [formControl]="prodFilterCtrl"></ngx-mat-select-search>
+              </mat-option>
+
+              <mat-option *ngFor="let prod of filteredProd | async" [value]="prod">
+                {{prod.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <ion-icon name="logo-buffer" slot="start"></ion-icon>
+          <ion-label>PARCELAS</ion-label>
+        </ion-item>
+      
+        <ion-card-content>
+            <mat-form-field style="width: 100%;">
+              <mat-label>Parcelas</mat-label>
+              <mat-select [(ngModel)]="selectedParcela" name="parcel" (blur)=selectPlanta()>
+                  <mat-option *ngFor="let parc of parcela" [value]="parc.id_parcela">
+                    {{parc.fincaparcela}}-  {{parc.identificacion}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+          <ion-item>
+            <ion-icon name="leaf" slot="start"></ion-icon>
+            <ion-label>PLANTAS</ion-label>
+          </ion-item>
+        
+          <ion-card-content>
+              <mat-form-field style="width: 100%;">
+                <mat-label>Plantas</mat-label>
+                <mat-select [(ngModel)]="selectedPlanta" name="parcel">
+                    <mat-option *ngFor="let plat of planta" [value]="plat.id_planta">
+                      {{plat.id_planta}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            
+          </ion-card-content>
+        </ion-card>
+</ion-content>
+<ion-footer>
+    <ion-card  (click)="irConteo()" color="secondary" style="width: 100%;">
+        <ion-card-content>
+            <ion-row>
+              <ion-col style="text-align:center; color:white">
+                  <ion-icon name="ios-arrow-dropright" style="font-size: 40px"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="text-align:center; color:white">
+                    <h3>IR A CONTEO</h3>
+                </ion-col>
+              </ion-row>
+          </ion-card-content>
+        </ion-card> 
+</ion-footer>

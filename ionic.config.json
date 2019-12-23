@@ -1,5 +1,7 @@
 {
-  "name": "poda",
-  "integrations": {},
+  "name": "GrapesPGA",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

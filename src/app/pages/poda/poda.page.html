@@ -1,0 +1,163 @@
+<ion-header >
+    <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button (click)="menu()">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+    <ion-title>
+     CONTEO PODA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding" >
+  <ion-card style="background: #ffd3d3;">
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">
+          <ion-row>
+            <ion-col>
+              {{productor}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                {{fincaparcela}}
+              </ion-col>
+          </ion-row>
+          
+          <ion-row>
+              <ion-col>
+                {{variedad}}
+              </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6">
+            <ion-row>
+              <ion-col>
+                {{localidad}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                  {{identificacion}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                {{anyo}}
+              </ion-col>
+            </ion-row>
+           
+          </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-segment (ionChange)="segmentChanged($event)" scrollable="true">
+      <ion-segment-button value="conteo">
+        <ion-icon name="create"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="fotos">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+     
+    </ion-segment>
+    <div *ngIf="valorSegmento==='conteo'">
+  <form [formGroup]="conteoForm" (change)="sumar()">
+    <ion-list>
+        <ion-item>
+            <ion-label>MARCADA</ion-label>
+            <ion-toggle formControlName="marcada"></ion-toggle>
+          </ion-item>
+      <ion-item>
+        <ion-label  position="floating">UVEROS</ion-label>
+        <ion-input formControlName="uveros" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">BROCADAS</ion-label>
+          <ion-input formControlName="brocadas" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+            <ion-label position="floating">YEMAS UVERO T1</ion-label>
+            <ion-input formControlName="t1" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">YEMAS UVERO T2</ion-label>
+          <ion-input formControlName="t2" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">YEMAS UVERO T3</ion-label>
+        <ion-input formControlName="t3" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">YEMAS UVERO T4</ion-label>
+          <ion-input formControlName="t4" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">YEMAS BROCADAS</ion-label>
+          <ion-input formControlName="ybrocadas" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          TOTAL {{total}}
+          
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">OBSERVACION</ion-label>
+        <ion-input formControlName="observacion" type="text"></ion-input>
+  </ion-item>
+    <ion-item>
+        <mat-select formControlName="valoracion" >
+            <mat-option [value]="0">VERDE</mat-option>
+            <mat-option [value]="1">AMARILLO</mat-option>
+            <mat-option [value]="2">ROJO</mat-option>
+          </mat-select>
+    </ion-item>
+    </ion-list>
+    <ion-item>
+        <ion-button  size="large" expand="full" color="tertiary" (click)="foto('camara')" style="width: 100%; "> <ion-icon name="camera"></ion-icon> FOTO</ion-button>
+        
+      </ion-item>
+      <ion-item>
+          <ion-button  size="large" expand="full" color="tertiary" (click)="foto('galeria')" style="width: 100%;"> <ion-icon name="camera"></ion-icon> GALERÍA</ion-button>
+          
+      </ion-item>
+    <ion-item>
+        <ion-button type="submit"  size="large" expand="full" color="success" (click)="enviar()" style="width: 100%;">  ENVIAR</ion-button>
+        
+    </ion-item>
+  </form>
+  
+ 
+    </div>
+
+
+    <div *ngIf="valorSegmento==='fotos'">
+      
+        
+           
+           <ion-item>
+             <ion-card>
+               <ion-card-content style="background: #ffd3d3;">
+                  <ion-row scrollable="true">
+                      <ion-col size="3" *ngFor="let image of galeria; let i = index">
+                        <ion-card>
+                          
+                          <img [src]="image.fotoPath" style="width: 100%;">
+                          <ion-button slot="end" fill="clear" (click)="eliminar(image, i, image.id)">
+                            <ion-icon slot="icon-only" name="trash"></ion-icon>
+                          </ion-button>
+                        </ion-card>
+                      </ion-col>
+                    </ion-row>
+                   
+                   
+               </ion-card-content>
+             </ion-card>
+           </ion-item>
+            
+        
+        
+    </div>
+
+</ion-content>

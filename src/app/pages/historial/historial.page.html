@@ -1,0 +1,42 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button (click)="menu()">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+    <ion-title>
+     HISTORIAL  
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-list>
+<ion-item>
+    <ion-card  (click)="historial('hpoda')" color="tertiary" style="width: 100%;">
+        <ion-card-content>
+            <ion-row>
+              <ion-col style="text-align:center; color:white">
+                  <ion-icon name="folder" style="font-size: 40px"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="text-align:center; color:white">
+                    <h3>PODA</h3>
+                    <p>Reset de la app</p>
+                </ion-col>
+              </ion-row>
+          </ion-card-content>
+        </ion-card>  
+ 
+</ion-item>
+
+
+   
+
+    
+</ion-list>
+        
+
+
+</ion-content>

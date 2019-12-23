@@ -1,0 +1,47 @@
+<ion-header >
+    <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button (click)="menu()">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+    </ion-buttons>
+    <ion-title>
+     HISTORIAL PODA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+  <ion-content class="padding">
+      <ion-list>
+  
+          <ion-list-header>
+              <ion-toolbar>
+                  <ion-buttons slot="end">
+                    <ion-button style="color:aqua" (click)="eliminarEnviados()">
+                     ELIMINAR ENVIADOS
+                    </ion-button>
+                    <ion-button style="color:red" (click)="eliminarTodos()" >
+                      ELIMINAR TODOS
+                    </ion-button>
+                  </ion-buttons>
+                 
+                </ion-toolbar>
+          </ion-list-header>
+      
+          <ion-item *ngFor="let list of conteos; index as pos">
+            <ion-label class="ion-text-wrap">
+              <ion-text color="primary">
+                <h3>{{list.idApp}}.{{list.fecha}}</h3>
+                <p>{{list.productor}}</p>
+                <p>{{list.fincaparcela}} / {{list.identificacion}}</p>
+                <p>Planta:{{list.idPlanta}}</p>
+              </ion-text>
+               
+              </ion-label>
+              <ion-icon *ngIf="list.enviado == 0" slot="end" name="cloud" style="font-size:35px; color:red" (click)="descarga(list.idApp, pos)"></ion-icon>
+              <ion-icon *ngIf="list.enviado == 1" slot="end" name="cloud-done" style="font-size:35px; color:green" (click)="descarga(list.idApp, pos)"></ion-icon>
+              <ion-icon slot="end" name="eye" style="font-size:35px; color:red" (click)="ver(list.idPlanta,list.idApp,list.idParcela)"></ion-icon>
+              <ion-icon slot="end" name="trash" style="font-size:35px; color:red" (click)="eliminar(list.idApp,pos)"></ion-icon>
+          </ion-item>
+        </ion-list>
+  </ion-content>
